@@ -1,4 +1,4 @@
-import SigninPage from './SigninPage.jsx';
 import HomePage from './HomePage.jsx';
+import Login from './Login.jsx';
 
-export {HomePage, SigninPage};
+export {HomePage, Login}

@@ -1,15 +1,17 @@
-import React from 'react';
-import {MasterLayout} from 'layout';
-import Home from 'modules/home';
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import {MainLayout} from 'components/layouts';
 
-class HomePage extends React.Component {
+class HomePage extends Component {
   render() {
     return (
-      <MasterLayout>
-        <Home />
-      </MasterLayout>
+      <MainLayout>
+        <div>
+          this is HomePage <Link to='/login'>FrontPage</Link>
+        </div>
+      </MainLayout>
     );
   }
 }
 
-export default HomePage;
+export default HomePage

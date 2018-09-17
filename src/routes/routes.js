@@ -1,17 +1,22 @@
-import App from 'app';
-import {HomePage, SigninPage} from 'pages';
+import App from 'src/app';
+import {HomePage, Login} from "components/pages";
 
-export default function routes({dispatch}) {
-  return {
-    path: "/", component: App,
-    indexRoute: {
-      component: HomePage
-    },
-    childRoutes: [
+
+const routes = [
+  {
+    component: App,
+    routes: [
       {
-        path: "/signin",
-        component: SigninPage
+        component: Login,
+        exact: true,
+        path: '/login',
+      }, {
+        component: HomePage,
+        exact: false,
+        path: '/',
       }
     ]
-  };
-}
+  }
+];
+
+export default routes;

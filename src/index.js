@@ -1,21 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory';
-import {createStore, applyMiddleware} from "redux";
-import {Provider} from 'react-redux';
-import routes from "base/routes/routes";
-import thunk from "redux-thunk";
-import {rootReducer} from "base/reducers";
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+import { Provider } from 'react-redux';
 
-const childRoutes = routes(store);
+import {routes} from 'src/routes';
+import {store} from 'src/reducers';
 
-// Create an enhanced history that syncs navigation events with the store
+import {Root} from 'src/routes';
 
 ReactDOM.render((
-  <Provider store={store}>
-    <Router children={childRoutes} history={browserHistory} />
-  </Provider>
+  <Root store={store} routes={routes}/>
 ), document.getElementById('root'));

@@ -1,1 +1,4 @@
-// import * as types from '../constants/ActionTypes'
+import {logout} from './logout';
+import {login, getUserInfo} from './login';
+
+export {login, logout, getUserInfo};
