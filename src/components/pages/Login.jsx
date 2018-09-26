@@ -4,6 +4,10 @@ import {LoginLayout} from 'components/layouts';
 import {LoginForm} from 'components/login';
 
 class Login extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   render() {
     return (
       <LoginLayout>

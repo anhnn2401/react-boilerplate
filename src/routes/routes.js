@@ -6,15 +6,8 @@ const routes = [
   {
     component: App,
     routes: [
-      {
-        component: Login,
-        exact: true,
-        path: '/login',
-      }, {
-        component: HomePage,
-        exact: false,
-        path: '/',
-      }
+      { path: '/', exact: true, component: HomePage },
+      { path: '/login', exact: true, component: Login }
     ]
   }
 ];

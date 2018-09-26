@@ -1,3 +1,11 @@
-import MainLayout from './MainLayout.jsx';
+import React, { Component } from 'react';
 
-export default MainLayout
+export default class MainLayout extends Component {
+  render() {
+    return (
+      <section className='main-layout'>
+        {this.props.children}
+      </section>
+    );
+  }
+}
