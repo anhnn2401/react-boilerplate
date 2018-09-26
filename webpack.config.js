@@ -280,8 +280,7 @@ module.exports = function (env) {
       entry: {
         ...clientConfig.entry,
         vendor: [
-          ...clientConfig.entry.vendor,
-          'webpack-hot-middleware/client'
+          ...clientConfig.entry.vendor
         ]
       }
     }
