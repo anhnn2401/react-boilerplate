@@ -57,8 +57,40 @@ class ASide extends React.Component {
     return;
   }
 
-  onClickMenu(type) {
+  onClickMenu(type, e) {
     this.props.dispatch({ type: type, dataSearch: {} });
+  }
+
+  componentDidMount() {
+    let ItemActive = $('.main-treeview.active');
+    if (ItemActive.length > 0) {
+      let ItemSubmenu = $('.main-treeview.active .treeview-menu .treeview');
+      let NumberItemSubmenu = ItemSubmenu.length;
+      let HeightItemSubmenu = ItemSubmenu.length > 0 ? ItemSubmenu[0].clientHeight : 0;
+      $('.main-treeview.active .treeview-menu').height(HeightItemSubmenu * NumberItemSubmenu);
+    }
+
+    $('.main-treeview').click(function(e){
+      if($(this).find('ul').length > 0) {
+        e.preventDefault();
+        if($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          $('.main-treeview .treeview-menu').height(0);
+        } else {
+          $('.main-treeview').removeClass('active');
+          $('.main-treeview .treeview-menu').height(0);
+          $(this).addClass('active');
+          let ItemSubmenu = $(this).find('.treeview-menu .treeview');
+          let NumberItemSubmenu = ItemSubmenu.length;
+          let HeightItemSubmenu = ItemSubmenu[0].clientHeight;
+          $(this).find('.treeview-menu').height(HeightItemSubmenu * NumberItemSubmenu)
+        }
+      }
+    })
+    let self = this;
+    $('.item-treeview').click(function(e) {
+      self.props.history.push($(this).attr('href'))
+    })
   }
 
   render() {
@@ -70,7 +102,7 @@ class ASide extends React.Component {
             {
               Menu.map((Item, i) => {
                 return (
-                  <li className={`treeview${this.checkactive(i) ? ' active' : ''}${this.props.active && this.props.active.length > 0 && this.props.active[0] == i ? ' active' : ''}`} key={i}>
+                  <li className={`main-treeview treeview${this.checkactive(i) ? ' active' : ''}${this.props.active && this.props.active.length > 0 && this.props.active[0] == i ? ' active' : ''}`} key={i}>
                     <Link to={Item.link} onClick={this.onClickMenu.bind(this, Item.type)}>
                       <i className={Item.icon ? Item.icon : ''}></i>
                       <span>{Item.menuName} 123</span>
@@ -82,7 +114,7 @@ class ASide extends React.Component {
                             Item.child.map((SubItem, j) => {
                               return (
                                 <li onClick={this.onClickMenu.bind(this, Item.type)} className={`treeview ${this.checkActiveSubmenu(SubItem.link) ? 'current' : ''} ${this.props.active && this.props.active.length > 1 && this.props.active[0] == i && this.props.active[1] == j ? ' current' : ''}`} key={j}>
-                                  <Link to={SubItem.link}>
+                                  <Link to={SubItem.link} className='item-treeview'>
                                     <i className={SubItem.icon ? SubItem.icon : ''}></i>
                                     <span>{SubItem.menuName}</span>
                                   </Link>

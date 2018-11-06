@@ -60,3 +60,12 @@
     vertical-align: middle;
   }
 }
+
+
+.main-treeview {
+  .treeview-menu {
+    @include transition(all .3s ease-in-out);
+    overflow: hidden;
+    height: 0;
+  }
+}

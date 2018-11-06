@@ -2,7 +2,7 @@ module.exports = {
   Admin: [
     {
       menuName: 'Home page',
-      link: '/',
+      link: '/Question',
       authorrize: null,
       icon: 'fa fa-home',
       type: '',
@@ -10,6 +10,21 @@ module.exports = {
     }, {
       menuName: 'Question',
       link: '/',
+      authorrize: null,
+      icon: 'fa fa-question',
+      type: '',
+      child: [
+        {
+          menuName: 'List',
+          link: '/questions'
+        }, {
+          menuName: 'Create',
+          link: '/questions/create'
+        }
+      ]
+    }, {
+      menuName: 'Question',
+      link: '/questions',
       authorrize: null,
       icon: 'fa fa-question',
       type: '',
