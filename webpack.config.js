@@ -108,7 +108,7 @@ module.exports = function (env) {
     new webpack.DefinePlugin({
       'process.env': envars
     }),
-    new ExtractTextPlugin({filename: (isProd ? '[hash]-docs.css' : 'docs.css'), allChunks: true}),
+    new ExtractTextPlugin({ filename: (isProd ? '[hash]-docs.css' : 'docs.css'), allChunks: true }),
     new webpack.NamedModulesPlugin()
   ];
 
@@ -156,6 +156,7 @@ module.exports = function (env) {
     app: [
       'jquery',
       'moment/moment.js',
+      './node_modules/font-awesome/css/font-awesome.min.css',
       'assets/style/main.scss'
       // 'src/index.js',
     ]

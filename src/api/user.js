@@ -1,10 +1,10 @@
-import reduxApi, {transformers} from 'redux-api';
+import reduxApi, { transformers } from 'redux-api';
 import customFetch from 'api/axios';
-import CONFIG from 'src/constants/config';
+import CONFIG from 'base/constants/config';
 
 const users = reduxApi({
   me: {
-    url: `/me`,
+    url: `/admin/me`,
     options: (url, params, getState) => {
       return {
         method: 'GET',
@@ -13,7 +13,7 @@ const users = reduxApi({
     }
   }
 })
-.use('fetch', customFetch)
-.use("rootUrl", CONFIG.API_URL);
+  .use('fetch', customFetch)
+  .use("rootUrl", CONFIG.API_URL);
 
 export default users;

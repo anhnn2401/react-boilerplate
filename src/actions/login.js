@@ -2,15 +2,15 @@ import { Auth, Users } from 'api';
 import cookie from 'react-cookie';
 
 function login(username, password, isRememberMe) {
-  return function(dispatch) {
+  return function (dispatch) {
     let params = {
       email: username,
       password: password
     }
-    return Auth.actions.signin.request('',params).then(res => {
+    return Auth.actions.signin.request('', params).then(res => {
       if (res && res.data) {
         if (isRememberMe) {
-          let expires = {path: '/', maxAge: 3600*24*30}
+          let expires = { path: '/', maxAge: 3600 * 24 * 30 }
           cookie.save('accessToken', res.data.data.token, expires);
         } else {
           cookie.save('accessToken', res.data.data.token);
@@ -22,7 +22,7 @@ function login(username, password, isRememberMe) {
           data: res.response
         }
       }
-    }).catch( (errors) => {
+    }).catch((errors) => {
       return {
         isAuthenticated: false,
         data: errors.response
@@ -32,27 +32,27 @@ function login(username, password, isRememberMe) {
 }
 
 function getUserInfo() {
-  return function(dispatch) {
+  return function (dispatch) {
     return Users.actions.me.request().then(res => {
-       if (res.data.data.user.authority) {
+      if (res.data.data.user.authority) {
         let userData = res.data.data.user;
         localStorage.setItem('userInfo', JSON.stringify(userData));
         return {
           isAuthenticated: true
         };
-       }
-       else {
-         return {
-           isAuthenticated: false
-         };
-       }
-    }).catch( (errors) => {
+      }
+      else {
+        return {
+          isAuthenticated: false
+        };
+      }
+    }).catch((errors) => {
       return {
         isAuthenticated: false,
         data: errors
       }
-   });
+    });
   }
 }
 
-export {login, getUserInfo}
+export { login, getUserInfo }

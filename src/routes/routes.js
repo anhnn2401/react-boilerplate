@@ -1,5 +1,5 @@
 import App from 'src/app';
-import {HomePage, Login} from "components/pages";
+import { HomePage, Login } from "components/pages";
 
 
 const routes = [

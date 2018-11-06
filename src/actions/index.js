@@ -1,4 +1,4 @@
-import {logout} from './logout';
-import {login, getUserInfo} from './login';
+import { logout } from './logout';
+import { login, getUserInfo } from './login';
 
-export {login, logout, getUserInfo};
+export { login, logout, getUserInfo };
